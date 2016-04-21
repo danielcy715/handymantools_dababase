@@ -1,0 +1,92 @@
+
+	
+1. Check tool availability:
+	
+SELECT *		   
+FROM tool
+WHERE Tooltype='$tool_type' AND isNULL(SaleDate) AND
+  ID NOT IN	(	   
+		   SELECT ToolId 
+		  FROM reservationtooldetails
+		  WHERE reservationNumber IN (SELECT reservationNumber 
+								   FROM reservation AS R
+								   WHERE NOT ('$start_date'>R.enddate or '$end_date'<R.startdate)
+								   )
+			   )
+			   
+test example:		 
+  
+SELECT *		   
+FROM tool
+WHERE Tooltype='handytool' AND isNULL(SaleDate) AND
+  ID NOT IN	(	   
+		   SELECT ToolId 
+		  FROM reservationtooldetails
+		  WHERE reservationNumber IN (SELECT reservationNumber 
+								   FROM reservation AS R
+								   WHERE NOT ('20160308'>R.enddate or '20160320'<R.startdate)
+								   )
+			   )
+			   
+			   
+			   
+			   
+2. pick up order
+SELECT ID, AbbreviatedDescription
+FROM tool
+WHERE ID in (SELECT ToolId
+			FROM reservationtooldetails
+			WHERE ReservationNumber=$reservationnumber);
+			
+example:
+SELECT ID, AbbreviatedDescription
+FROM tool
+WHERE ID in (SELECT ToolId
+			FROM reservationtooldetails
+			WHERE ReservationNumber='0223');
+			
+			
+3. view reservation
+
+SELECT *		   
+FROM tool,reservation
+WHERE ID IN	(	   
+		   SELECT ToolId 
+		  FROM reservationtooldetails 
+		  WHERE reservationNumber IN (SELECT reservationNumber 
+								   FROM reservation AS R
+								   WHERE CustomerLogin='$_SESSION['userid']'
+								   )
+			   )
+			   
+			   
+			   
+			   
+/* if($toolidset=='1') {
+							$toolid=$_SESSION['toolid'];
+							print "$toolid";
+							//$_SESSION['toolidset']=0;
+							
+						}
+-						else {
+							$toolid=date('YmdHis');
+							print "$toolid";
+							//$_SESSION['toolid']=$toolid;
+						} */
+-						
+-						//print "$toolid";
+
+Report 2:
+
+SELECT *		   
+FROM customer
+WHERE Login IN {
+	SELECT CustomerLogin 
+	FROM reservation AS R
+	WHERE R.startdate in lastmonth
+	}
+
+
+
+								   
+			   

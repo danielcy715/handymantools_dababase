@@ -1,0 +1,40 @@
+              <?php /*
+ * Created on Mar 21, 2010 * * To change the template for this generated file go to * Window - Preferences - PHPeclipse - PHP - Code Templates */ // remove all session variables, in case it is from logout session_start();
+ session_unset();// destroy the sessionsession_destroy(); 
+ //session_start(); ?>
+              <html>
+                <head>
+                  <meta  content="text/html; charset=utf-8"  http-equiv="content-type">
+                  <title> Login </title>
+                </head>
+                <body>
+                  <div  style="text-align: center;"><br>
+                  </div>
+                  <br>
+                  <form  name="Form"  method="get"  action=""  onsubmit="return validateForm()">
+                    <table  align="center"  bgcolor="#FFFFFF"  border="0"  cellpadding="5"
+
+                       cellspacing="1">
+                      <tbody>
+						<tr><td><h1>Main Menu</h1></td>
+						</tr>
+                        <tr>
+                          <td  width="300" ><input  name="viewprofile"  value="View Profile" type="button" onclick="window.open('newuser.php')"></td>
+                        </tr>
+						<tr>
+                          <td><input  name="checktoolavailability"  value="Check Tool Availability" type="button" onclick="window.open('newuser.php')"></td>
+                        </tr>
+						<tr>
+                          <td><input  name="makereservation"  value="Make Reservation" type="button" onclick="window.open('newuser.php')"></td>
+                        </tr>
+                        
+	
+	
+	
+	</tbody></table>
+</form>
+
+</body></html>
+<?php session_start();
+$_SESSION['errormessage']=NULL;
+?>
