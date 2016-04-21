@@ -2,3 +2,8 @@
 Handymantools Inventory Database Management System
 
 login.php is the main page.
+
+
+
+
+![ScreenShot](https://raw.githubusercontent.com/danielcy715/handymantools_dababase/master/handymandatabse.PNG)
